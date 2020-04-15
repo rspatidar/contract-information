@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvolentHealth.Web", "EvolentHealth.Web\EvolentHealth.Web.csproj", "{703A260E-3B56-44E0-99AD-9B052417070D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvolentHealth.Web", "EvolentHealth.Web\EvolentHealth.Web.csproj", "{703A260E-3B56-44E0-99AD-9B052417070D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvolentHealth.Core", "EvolentHealth.Core\EvolentHealth.Core.csproj", "{69AB4216-6983-48E4-817E-5D7E31EA258B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvolentHealth.Core", "EvolentHealth.Core\EvolentHealth.Core.csproj", "{69AB4216-6983-48E4-817E-5D7E31EA258B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvolentHealth.Data", "EvolentHealth.Data\EvolentHealth.Data.csproj", "{090942D4-9119-40A0-AAF2-070DB0D28BFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvolentHealth.Data", "EvolentHealth.Data\EvolentHealth.Data.csproj", "{090942D4-9119-40A0-AAF2-070DB0D28BFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvolentHealth.Service", "EvolentHealth.Service\EvolentHealth.Service.csproj", "{4E2A8E27-D4E3-479C-9486-AF4B9CD93303}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvolentHealth.Service", "EvolentHealth.Service\EvolentHealth.Service.csproj", "{4E2A8E27-D4E3-479C-9486-AF4B9CD93303}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{64397C1A-D255-4C79-9DB9-6906670767FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

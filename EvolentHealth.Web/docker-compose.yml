@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  contact-information-web:
+    image: ${DOCKER_REGISTRY-}contact-information-web:latest
+    ports:
+    - 9000:80  
+    environment:
+    - url= primacy_engine
+    
+    
+secrets:
+  pg_thread:
+    external: true
+    

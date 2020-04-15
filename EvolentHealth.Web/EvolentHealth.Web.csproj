@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -21,6 +21,44 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\app.routing.ts" />
+    <None Remove="ClientApp\src\app\models\contact.model.ts" />
+    <None Remove="ClientApp\src\app\modules\login\components\login-index.component.ts" />
+    <None Remove="ClientApp\src\app\modules\login\login.module.ts" />
+    <None Remove="ClientApp\src\app\modules\login\login.routing.ts" />
+    <None Remove="ClientApp\src\app\services\contact.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\modules\contact\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EvolentHealth.Core\EvolentHealth.Core.csproj" />
+    <ProjectReference Include="..\EvolentHealth.Data\EvolentHealth.Data.csproj" />
+    <ProjectReference Include="..\EvolentHealth.Service\EvolentHealth.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\app.routing.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\models\contact.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\modules\login\components\login-index.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\modules\login\login.routing.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\modules\login\login.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\contact.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="DataStore\Contact.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

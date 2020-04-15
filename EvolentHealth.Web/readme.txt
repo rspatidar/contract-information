@@ -1,0 +1,1 @@
+Docker build -t contact-information-web:latest -f Dockerfile .
