@@ -13,8 +13,28 @@ export class ContactService {
   }
 
   getcontactList(): Observable<ResponseModel<ContactModel[]>> {
-    return this._http.get<ResponseModel<ContactModel[]>>(this._baseUrl + 'contact/getcontact').pipe(
+    return this._http.get<ResponseModel<ContactModel[]>>(this._baseUrl + 'contact/getallcontact').pipe(
       tap((response: ResponseModel<ContactModel[]>) => { return response }));
+
+  }
+  getcontact(id:number): Observable<ResponseModel<ContactModel>> {
+    return this._http.get<ResponseModel<ContactModel>>(this._baseUrl + 'contact/getcontact/'+id).pipe(
+      tap((response: ResponseModel<ContactModel>) => { return response }));
+
+  }
+  deleteContact(id: number): Observable<number> {
+    return this._http.delete<number>(this._baseUrl + 'contact/deletecontact/' + id).pipe(
+      tap((response: number) => { return response }));
+
+  }
+  updateContact(contact: ContactModel): Observable<ResponseModel<ContactModel>> {
+    return this._http.put<ResponseModel<ContactModel>>(this._baseUrl + 'contact/updatecontact', contact).pipe(
+      tap((response: ResponseModel<ContactModel>) => { return response }));
+
+  }
+  AddContact(contact: ContactModel): Observable<ResponseModel<ContactModel>> {
+    return this._http.post<ResponseModel<ContactModel>>(this._baseUrl + 'contact/addcontact', contact).pipe(
+      tap((response: ResponseModel<ContactModel>) => { return response }));
 
   }
 }

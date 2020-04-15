@@ -1,44 +1,51 @@
 
-<div class="container">
-  <h2 class="form-group">Add Contact</h2>
-  <form [formGroup]="loginForm" class="form-horizontal" (ngSubmit)="login()">
+  <div class="container">
+    <h1>Add Contact</h1>
+    <button type="button" [routerLink]="['/contact']" mat-raised-button color="primary">Back</button>
+    <div class="row h-100 justify-content-center align-items-center">
+      <div class="col-10 col-md-8 col-lg-6">
+        <!-- Form -->
+        <form class="form-example" [formGroup]="loginForm" (ngSubmit)="AddContact()">
 
-    <p [ngClass]="{ 'has-error': isSubmitted && formControls.firstName.errors }">
-      <input type="text" placeholder="First Name" formControlName="firstName">
-    </p>
 
-    <div *ngIf="isSubmitted && formControls.firstName.errors" class="has-danger">
-      <div *ngIf="formControls.firstName.errors.required">First Name is required</div>
+
+          <!-- Input fields -->
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="First Name" maxlength="50" [formControl]="f.firstName" required>
+              <mat-error *ngIf="f.firstName?.errors?.required && isSubmitted">First Name is required</mat-error>
+
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Last Name" maxlength="50" [formControl]="f.lastName" required>
+              <mat-error *ngIf="f.lastName?.errors?.required && isSubmitted">Last Name is required</mat-error>
+
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Email" maxlength="50" [formControl]="f.email" required>
+              <mat-error *ngIf="f.email?.errors?.required && isSubmitted">Email is required</mat-error>
+
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Phone Number" maxlength="10" [formControl]="f.phoneNumber" required>
+              <mat-error *ngIf="f.phoneNumber?.errors?.required && isSubmitted">Phone Number is required</mat-error>
+
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-checkbox class="example-margin" [formControl]="f.status">Ative</mat-checkbox>
+
+          </div>
+          <button type="submit"  mat-raised-button color="primary">Add Contact</button>
+
+        </form>
+        <!-- Form end -->
+      </div>
     </div>
-
-    <p [ngClass]="{ 'has-error': isSubmitted && formControls.lastName.errors }">
-      <input type="text" placeholder="Last Name" formControlName="lastName">
-    </p>
-
-    <div *ngIf="isSubmitted && formControls.lastName.errors" class="has-danger">
-      <div *ngIf="formControls.lastName.errors.required">Last Name is required</div>
-    </div>
-
-
-    <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
-      <input type="email" placeholder="Email" formControlName="email">
-    </p>
-
-    <div *ngIf="isSubmitted && formControls.email.errors" class="has-danger">
-      <div *ngIf="formControls.email.errors.required">Email is required</div>
-    </div>
-
-
-    <p [ngClass]="{ 'has-error': isSubmitted && formControls.phoneNumber.errors }">
-      <input type="text" placeholder="Last Name" formControlName="phoneNumber">
-    </p>
-
-    <div *ngIf="isSubmitted && formControls.phoneNumber.errors" class="has-danger">
-      <div *ngIf="formControls.phoneNumber.errors.required">Phone Number is required</div>
-    </div>
-
-    <p>
-      <input type="submit" class="btn btn-default" value="Add">
-    </p>
-  </form>
-</div>
+  </div>

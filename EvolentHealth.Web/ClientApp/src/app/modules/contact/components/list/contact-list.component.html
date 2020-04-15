@@ -1,6 +1,42 @@
 
   <div class="container">
     <h2 class="form-group">Contact List</h2>
-    <a [routerLink]="['add']"> Add New</a>
-    {{contactList.length}}
+
+    <button mat-raised-button color="primary" [routerLink]="['add']">Add New Contact</button>
+
+    <table class="table" *ngIf="contactList && contactList.length>0">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Status</th>
+          <th scope="col">Action</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of contactList;">
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.firstName}}</td>
+          <td>{{item.lastName}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.phoneNumber}}</td>
+          <td>{{item.status==1?'Active':'In-Active'}}</td>
+
+          <td>
+            <button [routerLink]="['add']" [queryParams]="{id: item.id}" mat-button color="primary">Edit</button>
+            |
+            <button (click)="delete(item)" mat-button color="warn">Delete</button>
+
+
+          </td>
+
+        </tr>
+
+      </tbody>
+    </table>
+    <div *ngIf="contactList==null || contactList.length==0"> No contact found</div>
   </div>

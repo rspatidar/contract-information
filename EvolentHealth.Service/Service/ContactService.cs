@@ -49,6 +49,22 @@ namespace EvolentHealth.Service.Service
 
         }
 
+        public async Task<ResponseModel<Contact>> GetContactByIdAsync(int id)
+        {
+            ResponseModel<Contact> result;
+
+            Contact contact = await _contactRepository.GetByIdAsync(id);
+
+            result = new ResponseModel<Contact>()
+            {
+                Result = contact,
+                ResultCode = OrderCreationResultCode.Success,
+            };
+            return result;
+
+
+        }
+
         public async Task<ResponseModel<Contact>> CreateContactAsync(Contact contact)
         {
             // TODO: Throw ArgumentOutOfRangeException if number of ordered cups is less than 1

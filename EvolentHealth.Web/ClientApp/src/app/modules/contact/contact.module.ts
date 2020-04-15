@@ -6,6 +6,7 @@ import { ContactAddComponent } from './components/add/contact-add.component';
 import { ContactListComponent } from './components/list/contact-list.component';
 import { ContactIndexComponent } from './components/contact-index.component';
 import { ContactRouting } from './contact.routing';
+import { CustomMaterialModule } from '../../custom-material.module';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { ContactRouting } from './contact.routing';
     ContactIndexComponent
   ],
   imports: [
+    CustomMaterialModule,
     CommonModule,
     FormsModule,
     ContactRouting,

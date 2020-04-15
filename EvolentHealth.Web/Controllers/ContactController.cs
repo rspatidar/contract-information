@@ -22,10 +22,15 @@ namespace EvolentHealth.Web.Controllers
         }
 
 
-        [Route("GetContact"), HttpGet]
-        public async Task<ResponseModel<IEnumerable<Contact>>> GetContact()
+        [Route("GetAllContact"), HttpGet]
+        public async Task<ResponseModel<IEnumerable< Contact>>> GetAllContact()
         {
             return await _contactService.GetAllContactAsync();
+        }
+        [Route("GetContact/{id}"), HttpGet]
+        public async Task<ResponseModel<Contact>> GetContact(int id)
+        {
+            return await _contactService.GetContactByIdAsync(id);
         }
 
         [Route("AddContact"), HttpPost]
@@ -38,7 +43,7 @@ namespace EvolentHealth.Web.Controllers
         {
             return await _contactService.UpdatContactAsync(contact);
         }
-        [Route("DeleteContact"), HttpDelete]
+        [Route("DeleteContact/{id}"), HttpDelete]
         public async Task<int> DeleteContact(int id)
         {
             return await _contactService.DeleteContactByIdAsync(id);

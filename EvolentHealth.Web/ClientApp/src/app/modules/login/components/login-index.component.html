@@ -1,27 +1,24 @@
-<h1>Hello!</h1>
-<p>Welcome to Contact managmanet application:</p>
-<div class="container">
-  <h2 class="form-group">Log in</h2>
-  <form [formGroup]="loginForm" class="form-horizontal" (ngSubmit)="login()">
 
-    <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
-      <input type="email" placeholder="Email" formControlName="email">
-    </p>
+<div class="text-center">
+  <form [formGroup]="loginForm" class="form-signin" (ngSubmit)="login()">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-    <div *ngIf="isSubmitted && formControls.email.errors" class="has-danger">
-      <div *ngIf="formControls.email.errors.required">Email is required</div>
-    </div>
 
-    <p [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
-      <input type="password" placeholder="Password" formControlName="password">
-    </p>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="User Name" maxlength="50" [formControl]="f.email" required>
+      <mat-error *ngIf="f.email?.errors?.required">User Name is required</mat-error>
 
-    <div *ngIf="isSubmitted && formControls.password.errors" class="has-danger">
-      <div *ngIf="formControls.password.errors.required">Password is required</div>
-    </div>
+    </mat-form-field>
 
-    <p>
-      <input type="submit" class="btn btn-default" value="Log in">
-    </p>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Password" maxlength="20" [formControl]="f.password" type="password" required>
+      <mat-error *ngIf="f.password?.errors?.required">Password is required</mat-error>
+
+    </mat-form-field>
+
+    
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">© 2020</p>
   </form>
+
 </div>

@@ -1,7 +1,8 @@
 export class ContactModel {
+  id?: number;
   firstName: string;
-  lastName: number;
-  email: number;
+  lastName: string;
+  email: string;
   phoneNumber: string;
   status: number
   constructor() { }

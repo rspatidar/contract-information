@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { LoginIndexComponent } from './components/login-index.component';
 import { LoginRouting } from './login.routing';
 import { CommonModule } from '@angular/common';
+import { CustomMaterialModule } from '../../custom-material.module';
 
 
 @NgModule({
@@ -11,10 +12,12 @@ import { CommonModule } from '@angular/common';
     LoginIndexComponent
   ],
   imports: [
+    CustomMaterialModule,
     CommonModule,
     FormsModule,
     LoginRouting,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [],
  

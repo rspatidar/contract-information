@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: './login-index.component.html',
+  styleUrls: ['./login-index.component.css']
 })
 export class LoginIndexComponent {
 
@@ -18,7 +19,7 @@ export class LoginIndexComponent {
       password: ['', Validators.required]
     });
   }
-  get formControls() { return this.loginForm.controls; }
+  get f() { return this.loginForm.controls; }
 
   login() {
     console.log(this.loginForm.value);
