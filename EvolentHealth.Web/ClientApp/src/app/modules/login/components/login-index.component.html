@@ -1,0 +1,27 @@
+<h1>Hello!</h1>
+<p>Welcome to Contact managmanet application:</p>
+<div class="container">
+  <h2 class="form-group">Log in</h2>
+  <form [formGroup]="loginForm" class="form-horizontal" (ngSubmit)="login()">
+
+    <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
+      <input type="email" placeholder="Email" formControlName="email">
+    </p>
+
+    <div *ngIf="isSubmitted && formControls.email.errors" class="has-danger">
+      <div *ngIf="formControls.email.errors.required">Email is required</div>
+    </div>
+
+    <p [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
+      <input type="password" placeholder="Password" formControlName="password">
+    </p>
+
+    <div *ngIf="isSubmitted && formControls.password.errors" class="has-danger">
+      <div *ngIf="formControls.password.errors.required">Password is required</div>
+    </div>
+
+    <p>
+      <input type="submit" class="btn btn-default" value="Log in">
+    </p>
+  </form>
+</div>
