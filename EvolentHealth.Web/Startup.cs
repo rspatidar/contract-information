@@ -12,11 +12,15 @@ using EvolentHealth.Service.Service;
 using Microsoft.AspNetCore.Diagnostics;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
+using NLog.Web;
+using Microsoft.Extensions.Logging;
 
 namespace EvolentHealth.Web
 {
     public class Startup
     {
+        NLog.Logger logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -68,6 +72,7 @@ namespace EvolentHealth.Web
 
                 var result = JsonConvert.SerializeObject(new { error = exception.Message });
                 context.Response.ContentType = "application/json";
+                logger.Error(result);
                 await context.Response.WriteAsync(result);
             }));
 

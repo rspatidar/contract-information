@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -11,6 +13,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AppRouting } from './app.routing';
 import { ContactService } from './services/contact.service';
+import { ResponseInterceptor } from './services/response-interceptor';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import { ContactService } from './services/contact.service';
     FetchDataComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
@@ -32,7 +36,12 @@ import { ContactService } from './services/contact.service';
     ////])
   ],
   providers: [
-    ContactService
+    ContactService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

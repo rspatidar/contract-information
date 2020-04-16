@@ -30,7 +30,7 @@ export class ContactAddComponent {
         };
 
         if (id > 0) {
-
+          
           this._contactService.getcontact(id).subscribe(x => {
             if (x != null && x.result != null) {
               resolve(x.result);
@@ -39,7 +39,10 @@ export class ContactAddComponent {
               resolve(contact);
 
             }
-          });
+          },
+            () => (resolve(contact))
+          );
+         
 
         }
         else {
@@ -86,12 +89,19 @@ export class ContactAddComponent {
     if (this.contact.id > 0) {
       this._contactService.updateContact(contact).subscribe(x => {
         this.router.navigateByUrl('/contact');
-      });
+      },
+        () => {
+          alert("Application facing some problem while updating contact information, please try again later")
+        }
+      );
     }
     else {
       this._contactService.AddContact(contact).subscribe(x => {
         this.router.navigateByUrl('/contact');
-      });
+      },
+        () => {
+          alert("application facing some problem while adding contact information, please try again later")
+        });
     }
   }
 }
