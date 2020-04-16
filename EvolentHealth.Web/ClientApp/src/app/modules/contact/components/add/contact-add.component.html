@@ -13,14 +13,14 @@
           <div class="form-group">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="First Name" maxlength="50" [formControl]="f.firstName" required>
-              <mat-error *ngIf="f.firstName?.errors?.required && isSubmitted">First Name is required</mat-error>
+              <mat-error *ngIf="(f.firstName?.errors?.required  || f.firstName?.errors?.whitespace) && isSubmitted">First Name is required</mat-error>
 
             </mat-form-field>
           </div>
           <div class="form-group">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Last Name" maxlength="50" [formControl]="f.lastName" required>
-              <mat-error *ngIf="f.lastName?.errors?.required && isSubmitted">Last Name is required</mat-error>
+              <mat-error *ngIf="(f.lastName?.errors?.required || f.firstName?.errors?.whitespace) && isSubmitted">Last Name is required</mat-error>
 
             </mat-form-field>
           </div>
@@ -28,6 +28,8 @@
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Email" maxlength="50" [formControl]="f.email" required>
               <mat-error *ngIf="f.email?.errors?.required && isSubmitted">Email is required</mat-error>
+              <mat-error *ngIf="f.email?.errors?.email && isSubmitted">Valid email is required</mat-error>
+
 
             </mat-form-field>
           </div>
@@ -35,6 +37,8 @@
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Phone Number" maxlength="10" [formControl]="f.phoneNumber" required>
               <mat-error *ngIf="f.phoneNumber?.errors?.required && isSubmitted">Phone Number is required</mat-error>
+              <mat-error *ngIf="f.phoneNumber?.errors?.pattern && isSubmitted">Phone number should be 10 digit number</mat-error>
+
 
             </mat-form-field>
           </div>

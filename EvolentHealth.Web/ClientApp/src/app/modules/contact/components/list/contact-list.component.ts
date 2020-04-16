@@ -11,7 +11,7 @@ export class ContactListComponent {
 
   
   contactList: ContactModel[] = [];
-  constructor(private router: Router, private _contactService: ContactService) { }
+  constructor(private router: Router, private _contactService: ContactService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getContactList();
@@ -45,9 +45,9 @@ export class ContactListComponent {
   }
 
   openSnackBar(message: string, action: string) {
-    //this._snackBar.open(message, action, {
-    //  duration: 2000,
-    //});
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   

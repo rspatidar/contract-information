@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ContactModel } from '../../../../models/contact.model';
 import { ContactService } from '../../../../services/contact.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   templateUrl: './contact-add.component.html',
@@ -12,7 +13,8 @@ export class ContactAddComponent {
   loginForm: FormGroup;
   isSubmitted = false;
   contact: ContactModel;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute,private formBuilder: FormBuilder, private _contactService: ContactService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder,
+    private _contactService: ContactService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
@@ -55,10 +57,10 @@ export class ContactAddComponent {
       promise.then((value: ContactModel) => {
         this.contact = value;
         this.loginForm = this.formBuilder.group({
-          firstName: [value.firstName, Validators.required],
-          lastName: [value.lastName, Validators.required],
-          email: [value.email, Validators.required],
-          phoneNumber: [value.phoneNumber, Validators.required],
+          firstName: [value.firstName, [Validators.required, this.noWhitespaceValidator]],
+          lastName: [value.lastName, [Validators.required, this.noWhitespaceValidator]],
+          email: [value.email, [Validators.required, Validators.email]],
+          phoneNumber: [value.phoneNumber,[ Validators.required, Validators.pattern("^[0-9]{10}$")]],
           status: [value.status == 1]
         });
       });
@@ -68,6 +70,13 @@ export class ContactAddComponent {
 
     
   }
+
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
+  }
+
   get f() { return this.loginForm.controls; }
 
   AddContact() {
@@ -79,16 +88,20 @@ export class ContactAddComponent {
 
     let contact: ContactModel = {
       id: this.contact.id,
-      email: this.f.email.value,
-      firstName: this.f.firstName.value,
-      lastName: this.f.lastName.value,
-      phoneNumber: this.f.phoneNumber.value,
+      email: this.f.email.value.trim(),
+      firstName: this.f.firstName.value.trim(),
+      lastName: this.f.lastName.value.trim(),
+      phoneNumber: this.f.phoneNumber.value.trim(),
       status: this.f.status.value == true ? 1 : 0
     };
 
     if (this.contact.id > 0) {
       this._contactService.updateContact(contact).subscribe(x => {
-        this.router.navigateByUrl('/contact');
+        if (x != null) {
+          this.openSnackBar("contact information updated sucessfully", "Update");
+          this.router.navigateByUrl('/contact');
+        }
+        
       },
         () => {
           alert("Application facing some problem while updating contact information, please try again later")
@@ -97,11 +110,20 @@ export class ContactAddComponent {
     }
     else {
       this._contactService.AddContact(contact).subscribe(x => {
-        this.router.navigateByUrl('/contact');
+        if (x != null) {
+          this.openSnackBar("contact information added sucessfully", "Add");
+          this.router.navigateByUrl('/contact');
+        }
       },
         () => {
           alert("application facing some problem while adding contact information, please try again later")
         });
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

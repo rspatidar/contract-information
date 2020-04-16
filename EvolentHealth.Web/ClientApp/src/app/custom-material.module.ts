@@ -2,7 +2,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import {
-  MatButtonModule, MatCardModule,  MatInputModule,  MatIconModule, MatProgressSpinnerModule,  MatCheckboxModule
+  MatButtonModule, MatCardModule, MatInputModule, MatIconModule, MatSnackBarModule,  MatCheckboxModule, MAT_SNACK_BAR_DEFAULT_OPTIONS
 } from '@angular/material';
 @NgModule({
   imports: [
@@ -12,7 +12,7 @@ import {
     MatCardModule,
     MatInputModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatSnackBarModule
   ],
   exports: [
     CommonModule,
@@ -21,7 +21,10 @@ import {
     MatCardModule,
     MatInputModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatSnackBarModule
   ],
+  providers: [
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500, verticalPosition: 'top' } }
+  ]
 })
 export class CustomMaterialModule { }
