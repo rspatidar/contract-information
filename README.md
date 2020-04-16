@@ -13,6 +13,7 @@ this application is used to manage the contact information
 - JSON file to store the data
 - Deployment Tools: Docker
 - AWS EC2 Linux
+- Nunit test framework
 
 -------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------- Folder Structure --------------------------------------------------------
