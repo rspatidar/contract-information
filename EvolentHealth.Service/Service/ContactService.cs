@@ -21,15 +21,17 @@ namespace EvolentHealth.Service.Service
 
         public async Task<int> DeleteContactByIdAsync(int id)
         {
-            // TODO: Throw ArgumentOutOfRangeException if number of ordered cups is less than 1
+            if (id < 1)
+                throw new ArgumentOutOfRangeException(nameof(id), $"{nameof(id)} must be greater then zero");
 
             Contact contact = await _contactRepository.GetByIdAsync(id);
 
-            // TODO: Return StockExceeded result code if not enough cups in stock
+            if (contact == null || contact.Id != id)
+                return 0;
+            else
+                await _contactRepository.DeleteAsync(contact);
 
-            await _contactRepository.DeleteAsync(contact);
 
-            
             return 1;
         }
 
@@ -42,7 +44,7 @@ namespace EvolentHealth.Service.Service
             result = new ResponseModel<IEnumerable<Contact>>()
             {
                 Result = contactList,
-                ResultCode = OrderCreationResultCode.Success,
+                ResultCode = ResultCode.Success,
             };
             return result;
 
@@ -58,7 +60,7 @@ namespace EvolentHealth.Service.Service
             result = new ResponseModel<Contact>()
             {
                 Result = contact,
-                ResultCode = OrderCreationResultCode.Success,
+                ResultCode = ResultCode.Success,
             };
             return result;
 
@@ -67,22 +69,22 @@ namespace EvolentHealth.Service.Service
 
         public async Task<ResponseModel<Contact>> CreateContactAsync(Contact contact)
         {
-            // TODO: Throw ArgumentOutOfRangeException if number of ordered cups is less than 1
 
             ResponseModel<Contact> result;
 
-            // TODO: Return StockExceeded result code if not enough cups in stock
+            if (contact==null)
+                throw new ArgumentNullException(nameof(contact), $"{nameof(contact)} should not be null");
 
             Contact createdContact = await CreateContactInternalAsync(contact);
 
             result = new ResponseModel<Contact>
             {
-                ResultCode = OrderCreationResultCode.Success,
+                ResultCode = ResultCode.Success,
                 Result = createdContact
             };
             return result;
         }
-        private async Task<Contact> CreateContactInternalAsync(Contact contact)
+        internal async Task<Contact> CreateContactInternalAsync(Contact contact)
         {
 
             var savedContact = await _contactRepository.CreateAsync(contact);
@@ -93,17 +95,15 @@ namespace EvolentHealth.Service.Service
 
         public async Task<ResponseModel<Contact>> UpdatContactAsync(Contact contact)
         {
-            // TODO: Throw ArgumentOutOfRangeException if number of ordered cups is less than 1
 
             ResponseModel<Contact> result;
-
-            // TODO: Return StockExceeded result code if not enough cups in stock
-
+            if (contact == null)
+                throw new ArgumentNullException(nameof(contact), $"{nameof(contact)} should not be null");
             Contact createdContact = await _contactRepository.UpdateAsync(contact);
 
             result = new ResponseModel<Contact>
             {
-                ResultCode = OrderCreationResultCode.Success,
+                ResultCode = ResultCode.Success,
                 Result = createdContact
             };
             return result;

@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvolentHealth.Service", "Ev
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{64397C1A-D255-4C79-9DB9-6906670767FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvolentHealth.Service.Test", "EvolentHealth.Service.Test\EvolentHealth.Service.Test.csproj", "{8F878183-0815-46D5-93F5-C4B0CE1BE0CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,9 +37,16 @@ Global
 		{4E2A8E27-D4E3-479C-9486-AF4B9CD93303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E2A8E27-D4E3-479C-9486-AF4B9CD93303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E2A8E27-D4E3-479C-9486-AF4B9CD93303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F878183-0815-46D5-93F5-C4B0CE1BE0CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F878183-0815-46D5-93F5-C4B0CE1BE0CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F878183-0815-46D5-93F5-C4B0CE1BE0CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F878183-0815-46D5-93F5-C4B0CE1BE0CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F878183-0815-46D5-93F5-C4B0CE1BE0CA} = {64397C1A-D255-4C79-9DB9-6906670767FA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A6CC9BE4-87CD-45B0-901E-A19996490834}
