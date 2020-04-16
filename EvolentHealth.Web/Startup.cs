@@ -9,6 +9,9 @@ using EvolentHealth.Core.DataInterface;
 using EvolentHealth.Core.ServiceInterface;
 using EvolentHealth.Data.Repositories;
 using EvolentHealth.Service.Service;
+using Microsoft.AspNetCore.Diagnostics;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace EvolentHealth.Web
 {
@@ -57,6 +60,16 @@ namespace EvolentHealth.Web
             {
                 app.UseSpaStaticFiles();
             }
+
+            app.UseExceptionHandler(a => a.Run(async context =>
+            {
+                var feature = context.Features.Get<IExceptionHandlerPathFeature>();
+                var exception = feature.Error;
+
+                var result = JsonConvert.SerializeObject(new { error = exception.Message });
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(result);
+            }));
 
             app.UseRouting();
 

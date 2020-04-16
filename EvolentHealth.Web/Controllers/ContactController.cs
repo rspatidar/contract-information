@@ -13,12 +13,10 @@ namespace EvolentHealth.Web.Controllers
     [Route("[controller]")]
     public class ContactController : ControllerBase
     {
-        private readonly IContactRepository _contactRepository;
         private readonly IContactService _contactService;
-        public ContactController(IContactRepository contactRepository, IContactService contactService)
+        public ContactController(IContactService contactService)
         {
             _contactService = contactService;
-            _contactRepository = contactRepository;
         }
 
 
