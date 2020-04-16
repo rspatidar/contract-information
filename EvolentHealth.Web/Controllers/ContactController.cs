@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -50,5 +51,6 @@ namespace EvolentHealth.Web.Controllers
         {
             return await _contactService.DeleteContactByIdAsync(id);
         }
+
     }
 }
